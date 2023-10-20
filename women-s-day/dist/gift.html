@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* Thiết lập màu và chiều rộng của ô input */
+    input {
+      width: 300px;
+      height: 20px;
+      border: none;
+      font-size: 16px;
+      background-color: white; /* Màu nền trắng */
+    }
+
+    /* Áp dụng animation cho ô input */
+    input[type="text"] {
+      animation: colorRun 2s linear forwards; /* Thời gian chạy và lưu trữ kết quả cuối cùng */
+    }
+
+    /* Tạo hiệu ứng chạy màu bằng CSS animation */
+    @keyframes colorRun {
+      0% {
+        background-position: 0 0;
+      }
+      100% {
+        background-position: 100% 0;
+      }
+    }
+
+    /* Đặt style cho div chứa input và biểu tượng trái tim */
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    /* Style cho biểu tượng trái tim */
+    .heart-icon {
+      font-size: 24px;
+      color: red;
+    }
+
+    /* Style cho nút "Nhận quà" */
+    .gift-button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #ff69b4; /* Màu hồng */
+      border: none;
+      border-radius: 5px;
+      font-size: 18px;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <i class="fas fa-heart heart-icon"></i><br>
+    <input type="text" readonly id="progressInput">
+    <div id="progressPercentage">0%</div>
+    <button class="gift-button" onclick="openGift()">Nhận Quà</button>
+  </div>
+
+  <script>
+    var input = document.getElementById("progressInput");
+    var progressPercentage = document.getElementById("progressPercentage");
+    var percent = 0;
+
+    function updateProgressBar() {
+      percent += 1;
+      if (percent <= 100) {
+        input.style.background = `linear-gradient(90deg, pink ${percent}%, violet ${percent}%)`;
+        progressPercentage.innerText = percent + "%";
+        setTimeout(updateProgressBar, 100);
+      }
+    }
+
+    function openGift() {
+      // Thực hiện hành động mở quà khi nhấn vào nút "Nhận quà"
+      alert("Chúc mừng! Bạn đã nhận được một món quà!");
+    }
+
+    updateProgressBar();
+  </script>
+</body>
+
+</html>
